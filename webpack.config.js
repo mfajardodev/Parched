@@ -10,14 +10,14 @@ module.exports = {
         filename: 'grabAColdOne-bundle.js' 
     },
 
-    mode: "production",
+    mode: 'production',
 
     // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
+    devtool: 'source-map',
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx"]
+        extensions: ['.js', '.ts', '.tsx', '.css', '.scss']
     },
 
     module: {
@@ -27,23 +27,32 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: "ts-loader"
+                        loader: 'ts-loader'
                     }
                 ]
             },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader', // creates style nodes from JS strings
+                    'css-loader', // translates CSS into CommonJS
+                    'sass-loader' // compiles Sass to CSS, using Node Sass by default
+                ]
+
+            },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             {
-                enforce: "pre",
+                enforce: 'pre',
                 test: /\.js$/,
-                loader: "source-map-loader"
+                loader: 'source-map-loader'
             }
         ]
     },
 
     // Avoid bundling dependencies to reduce bundle size, template will include these via a cdn
     externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
+        'react': 'React',
+        'react-dom': 'ReactDOM'
     },
 
     plugins: [
