@@ -31,6 +31,7 @@ export class Main extends React.Component<{}, IMainState> {
       .then((payload: IPunkApiPayload[] | undefined) => {
         if (payload) {
           const randomBeerResult = filterPayloadSingle(payload);
+          console.log(randomBeerResult);
           this.setState({ randomBeer: randomBeerResult });
         }
       })
@@ -47,47 +48,64 @@ export class Main extends React.Component<{}, IMainState> {
 
   render() {
     return (
-      <div>
-        <h1>Punk API Food Pairing</h1>
-        <div>
-          <form onSubmit={this.searchSubmitHandler}>
-            <label>
-              <input
-                type='text'
-                value={this.state.searchQuery}
-                name='foodQueryField'
-                placeholder='find a food pairing!'
-                onChange={this.queryChangeHandler}
-              />
-            </label>
-            <input type='submit' value='Search' />
-          </form>
+      <div className='app-col'>
+        <div className='app-container'>
+          <h1 className='app-title'>Punk API Food Pairing</h1>
+          <div className='description'>
+            <p>Enter a dish or ingredient below to find Brew Dog beer pairings!</p>
+            <p>Data provided by PunkAPI</p>
+          </div>
+          <div>
+            <form onSubmit={this.searchSubmitHandler}>
+              <label>
+                <input
+                  type='text'
+                  value={this.state.searchQuery}
+                  name='foodQueryField'
+                  className='food-query-field'
+                  placeholder='Enter a dish or ingredient here! (ex. "beef")'
+                  onChange={this.queryChangeHandler}
+                />
+              </label>
+            </form>
 
-          { this.state.beerResults && this.state.beerResults.length ? 
-            (
-              this.state.beerResults.map((beerObj, ndx) => {
-                return (
+            { this.state.beerResults && this.state.beerResults.length ? 
+              (
+                <div className='search-results'>
+                  <p>Search Results</p>
+                  {this.state.beerResults.map((beerObj, ndx) => {
+                    return (
+                      <BeerCard
+                        key={ndx}
+                        name={beerObj.name}
+                        tagline={beerObj.tagline}
+                        description={beerObj.description}
+                        imageUrl={beerObj.imageUrl}
+                        abv={beerObj.abv}
+                      />
+                    );
+                  })
+                  }
+                </div>
+              )
+              : this.state.beerResults && this.state.randomBeer ? 
+              (
+                <div className='search-results'>
+                  <p>no results</p>
                   <BeerCard
-                    key={ndx}
-                    name={beerObj.name}
-                    tagline={beerObj.tagline}
-                    description={beerObj.description}
-                    imageUrl={beerObj.imageUrl}
-                    abv={beerObj.abv}
+                    name={this.state.randomBeer.name}
+                    tagline={this.state.randomBeer.tagline}
+                    description={this.state.randomBeer.description}
+                    imageUrl={this.state.randomBeer.imageUrl}
+                    abv={this.state.randomBeer.abv}
                   />
-                );
-              })
-            )
-            : this.state.beerResults ? 
-            (
-              <p>no results</p>
-            )
-            :
-            (
-              <p>Search!</p>
-            )
-          }
+                </div>
+              )
+              :
+              ''
+            }
 
+          </div>
         </div>
       </div>
     );

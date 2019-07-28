@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+@import 'utils/styleVariables';
+
+body {
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  * {
+    margin: 0;
+  }
+}
+
+#render-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  background-image: linear-gradient($beer-color-light, $beer-color-dark);
+}

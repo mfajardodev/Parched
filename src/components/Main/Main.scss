@@ -1,0 +1,40 @@
+@import '../../utils/styleVariables';
+
+.app-col {
+  width: 80%;
+  max-width: 800px;
+}
+
+.app-container {
+  margin-top: 20%;
+  padding: 10px 20px;
+  border: 1px solid $beer-color-dark;
+  border-radius: 5px;
+  background-color: white;
+  text-align: center;
+
+  .app-title {
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .description {
+    margin-bottom: 10px;
+
+    p {
+      font-size: 12px;
+      font-weight: 600;
+      color: #444444;
+    }
+  }
+}
+
+.food-query-field {
+  width: 75%;
+  max-width: 500px;
+  padding: 10px 5px;
+  border: 1px solid $beer-color-light;
+  border-radius: 5px;
+  &:focus {
+    outline: 1px solid $beer-color-dark;
+  }
+}
