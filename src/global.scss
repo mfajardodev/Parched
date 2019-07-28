@@ -10,7 +10,8 @@ body {
 
 #render-container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   justify-content: center;
   background-image: linear-gradient($beer-color-light, $beer-color-dark);
 }

@@ -72,7 +72,7 @@ export class Main extends React.Component<{}, IMainState> {
             { this.state.beerResults && this.state.beerResults.length ? 
               (
                 <div className='search-results'>
-                  <p>Search Results</p>
+                  <h1>Search Results</h1>
                   {this.state.beerResults.map((beerObj, ndx) => {
                     return (
                       <BeerCard
@@ -91,7 +91,7 @@ export class Main extends React.Component<{}, IMainState> {
               : this.state.beerResults && this.state.randomBeer ? 
               (
                 <div className='search-results'>
-                  <p>no results</p>
+                  <h1>No Results Found - Displaying Random Beer</h1>
                   <BeerCard
                     name={this.state.randomBeer.name}
                     tagline={this.state.randomBeer.tagline}
