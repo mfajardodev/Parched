@@ -1,8 +1,7 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-import { Hello } from "./components/Hello/Hello";
-import { BeerCard } from "./components/BeerCard/BeerCard";
+import { Main } from './components/Main/Main';
 
 let dummyData = [
   {
@@ -89,12 +88,6 @@ let dummyData = [
 ];
 
 ReactDOM.render(
-    <BeerCard
-      name={dummyData[0].name}
-      tagline={dummyData[0].tagline}
-      description={dummyData[0].description}
-      imageUrl={dummyData[0].image_url}
-      abv={dummyData[0].abv}
-    />,
+    <Main />,
     document.getElementById("render-container")
 );

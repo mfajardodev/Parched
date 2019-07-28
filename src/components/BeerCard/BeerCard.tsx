@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './BeerCard.scss';
 
-export interface BeerCardProps {
+export interface IBeerCard {
   name: string;
   tagline: string;
   description: string;
@@ -9,8 +9,9 @@ export interface BeerCardProps {
   abv: number;
 }
 
-export class BeerCard extends React.Component<BeerCardProps, {}> {
-   render() {
+export class BeerCard extends React.Component<IBeerCard, {}> {
+
+    render() {
       return (
         <div data-component='beer-card'>
           <h1>{this.props.name}</h1>

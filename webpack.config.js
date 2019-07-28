@@ -52,7 +52,8 @@ module.exports = {
     // Avoid bundling dependencies to reduce bundle size, template will include these via a cdn
     externals: {
         'react': 'React',
-        'react-dom': 'ReactDOM'
+        'react-dom': 'ReactDOM',
+        'axios': 'axios'
     },
 
     plugins: [
