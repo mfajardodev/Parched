@@ -10,6 +10,7 @@ export interface IBeerCard {
   foodPairing: string;
 }
 
+// Component to render the search results of the PunkAPI call
 export class BeerCard extends React.Component<IBeerCard, {}> {
 
     render() {

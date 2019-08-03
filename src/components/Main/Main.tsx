@@ -15,6 +15,7 @@ interface IMainState {
 export class Main extends React.Component<{}, IMainState> {
   state: IMainState = { searchValue: '' };
 
+  // This function updates the state with the search results of the user query
   searchBeers = (query: string): void => {
     const beerSearchPromise = getBeerSearchResults(query);
     const beerRandomPromise = getBeerRandom();
@@ -22,14 +23,18 @@ export class Main extends React.Component<{}, IMainState> {
     beerSearchPromise
       .then((payload: IPunkApiPayload[]) => {
         const beerResults = filterPayload(payload);
-        
+
+        // if the query returned a list of results update the state
         this.setState({ beerResults: beerResults });
         
+        // if the query returned no matched beers, return a random beer
         if (!beerResults.length) {
           return beerRandomPromise;
         }
       })
       .then((payload: IPunkApiPayload[] | undefined) => {
+
+        // update the state with a random beer
         if (payload) {
           const randomBeerResult = filterPayloadSingle(payload);
           this.setState({ randomBeer: randomBeerResult });
