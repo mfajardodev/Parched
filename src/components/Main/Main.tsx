@@ -51,7 +51,7 @@ export class Main extends React.Component<{}, IMainState> {
     return (
       <div className='app-col'>
         <div className='app-container'>
-          <h1 className='app-title'>Punk API Food Pairing</h1>
+          <h1 className='app-title'>Parched.</h1>
           <div className='description'>
             <p>Enter a dish or ingredient below to find Brew Dog beer pairings!</p>
             <p>Data provided by PunkAPI</p>
