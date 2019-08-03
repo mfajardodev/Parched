@@ -6,13 +6,14 @@ import { IPunkApiPayload } from '../../types/PunkApiTypes';
 import { getBeerRandom, getBeerSearchResults, filterPayload, filterPayloadSingle } from '../../utils/punkApiUtils';
 
 interface IMainState {
-  searchQuery: string;
+  searchValue: string;
+  searchQuery?: string;
   randomBeer?: IBeerCard;
   beerResults?: IBeerCard[];
 }
 
 export class Main extends React.Component<{}, IMainState> {
-  state: IMainState = { searchQuery: '' };
+  state: IMainState = { searchValue: '' };
 
   searchBeers = (query: string): void => {
     const beerSearchPromise = getBeerSearchResults(query);
@@ -31,19 +32,19 @@ export class Main extends React.Component<{}, IMainState> {
       .then((payload: IPunkApiPayload[] | undefined) => {
         if (payload) {
           const randomBeerResult = filterPayloadSingle(payload);
-          console.log(randomBeerResult);
           this.setState({ randomBeer: randomBeerResult });
         }
       })
   };
 
   queryChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ searchQuery: e.currentTarget.value });
+    this.setState({ searchValue: e.currentTarget.value });
   };
 
   searchSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    this.searchBeers(this.state.searchQuery);
+    this.setState({ searchQuery: this.state.searchValue });
+    this.searchBeers(this.state.searchValue);
   };
 
   render() {
@@ -60,7 +61,7 @@ export class Main extends React.Component<{}, IMainState> {
               <label>
                 <input
                   type='text'
-                  value={this.state.searchQuery}
+                  value={this.state.searchValue}
                   name='foodQueryField'
                   className='food-query-field'
                   placeholder='Enter a dish or ingredient here! (ex. "beef")'
@@ -72,7 +73,7 @@ export class Main extends React.Component<{}, IMainState> {
             { this.state.beerResults && this.state.beerResults.length ? 
               (
                 <div className='search-results'>
-                  <h1>Search Results</h1>
+                  <h2 className='results-header'>Search Results for "{this.state.searchQuery}"</h2>
                   {this.state.beerResults.map((beerObj, ndx) => {
                     return (
                       <BeerCard
@@ -82,6 +83,7 @@ export class Main extends React.Component<{}, IMainState> {
                         description={beerObj.description}
                         imageUrl={beerObj.imageUrl}
                         abv={beerObj.abv}
+                        foodPairing={beerObj.foodPairing}
                       />
                     );
                   })
@@ -91,13 +93,14 @@ export class Main extends React.Component<{}, IMainState> {
               : this.state.beerResults && this.state.randomBeer ? 
               (
                 <div className='search-results'>
-                  <h1>No Results Found - Displaying Random Beer</h1>
+                  <h2 className='results-header'>No Results Found for "{this.state.searchQuery}"- Displaying Random Beer</h2>
                   <BeerCard
                     name={this.state.randomBeer.name}
                     tagline={this.state.randomBeer.tagline}
                     description={this.state.randomBeer.description}
                     imageUrl={this.state.randomBeer.imageUrl}
                     abv={this.state.randomBeer.abv}
+                    foodPairing={this.state.randomBeer.foodPairing}
                   />
                 </div>
               )

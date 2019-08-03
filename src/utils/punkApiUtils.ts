@@ -21,20 +21,22 @@ export function filterPayloadSingle(payload: IPunkApiPayload[]): IBeerCard {
     tagline: beerObj.tagline,
     description: beerObj.description,
     imageUrl: beerObj.image_url,
-    abv: beerObj.abv
+    abv: beerObj.abv,
+    foodPairing: beerObj.food_pairing.join(', ')
   };
 }
 
 export function filterPayload(payload: IPunkApiPayload[]): IBeerCard[] {
   const results = [];
   
-  payload.forEach(result => {
+  payload.forEach(beerObj => {
     results.push({
-      name: result.name,
-      tagline: result.tagline,
-      description: result.description,
-      imageUrl: result.image_url,
-      abv: result.abv
+      name: beerObj.name,
+      tagline: beerObj.tagline,
+      description: beerObj.description,
+      imageUrl: beerObj.image_url,
+      abv: beerObj.abv,
+      foodPairing: beerObj.food_pairing.join(', ')
     });
   });
   

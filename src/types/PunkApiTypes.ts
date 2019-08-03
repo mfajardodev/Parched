@@ -43,7 +43,7 @@ export interface IPunkApiPayload {
     }[];
     yeast: string;
   };
-  food_pairings: string[];
+  food_pairing: string[];
   brewers_tips: string;
   contributed_by: string;
 };

@@ -7,6 +7,7 @@ export interface IBeerCard {
   description: string;
   imageUrl: string;
   abv: number;
+  foodPairing: string;
 }
 
 export class BeerCard extends React.Component<IBeerCard, {}> {
@@ -18,6 +19,7 @@ export class BeerCard extends React.Component<IBeerCard, {}> {
             <h1>{this.props.name}</h1>
             <p>{this.props.abv}% abv | {this.props.tagline}</p>
             <p className='card-description'>{this.props.description}</p>
+            <p className='food-pairs'>Pairs well with: {this.props.foodPairing}</p>
           </div>
           <img className='result-image' src={this.props.imageUrl} alt='beer image'></img>
         </div>
