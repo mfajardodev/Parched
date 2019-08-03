@@ -1,12 +1,15 @@
 @import '../../utils/styleVariables';
 
 .app-col {
-  width: 80%;
-  max-width: 800px;
-}
+  width: 800px;
+
+  @media screen and (max-width: 800px) {
+    width: 95%;
+  }
+ }
 
 .app-container {
-  margin-top: 20%;
+  margin-top: 10vh;
   padding: 10px 20px;
   border: 1px solid $beer-color-dark;
   border-radius: 5px;

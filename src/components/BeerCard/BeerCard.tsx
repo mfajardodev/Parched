@@ -20,7 +20,6 @@ export class BeerCard extends React.Component<IBeerCard, {}> {
             <p className='beer-stats'>{this.props.abv}% abv | {this.props.tagline}</p>
             <p className='card-description'>{this.props.description}</p>
             <p className='food-pairs'>Pairs well with: {this.props.foodPairing}</p>
-            <button className='popup-btn'>See Image</button>
           </div>
           <img className='result-image' src={this.props.imageUrl} alt='beer image'></img>
         </div>
